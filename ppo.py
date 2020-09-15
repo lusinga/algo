@@ -20,6 +20,7 @@ model.learn(total_timesteps=10000)
 obs = env.reset()
 
 score = 0
+wins = 0
 
 while True:
     action, _states = model.predict(obs)
@@ -27,9 +28,13 @@ while True:
     env.render()
     score = score + 1
     # print(dones)
+    if rewards > 0:
+        wins += rewards
+        print('win!!!', rewards)
 
     if done:
         # obs = env.reset()
         print('finished', score)
+        print('wins:', wins)
         break
 
