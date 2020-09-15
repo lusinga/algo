@@ -45,6 +45,8 @@ model.learn(total_timesteps=10000, log_interval=10)
 
 #model = DDPG.load("ddpg_pendulum")
 
+score = 0
+
 obs = env.reset()
 while True:
     action, _states = model.predict(obs)
@@ -52,8 +54,9 @@ while True:
     env.render()
 
     score = score + 1
+    print(dones)
 
-    if dones:
+    if dones.any():
         # obs = env.reset()
         print('finished', score)
         break
