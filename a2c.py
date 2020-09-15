@@ -11,7 +11,7 @@ env = gym.make('Pong-v0')
 
 # model = A2C(MlpPolicy, env, verbose=1)
 model = A2C(CnnPolicy, env, verbose=1)
-model.learn(total_timesteps=10000)
+model.learn(total_timesteps=30000)
 #model.save("a2c_cartpole")
 
 #del model # remove to demonstrate saving and loading
@@ -21,15 +21,20 @@ model.learn(total_timesteps=10000)
 obs = env.reset()
 
 score = 0
+wins = 0
 
 while True:
     action, _states = model.predict(obs)
     obs, rewards, done, info = env.step(action)
     env.render()
     score = score + 1
+    if rewards > 0:
+        wins += rewards
+        print('win!!!', rewards)
+    # print(info)
     # print(dones)
 
     if done:
-        # obs = env.reset()
         print('finished', score)
+        print('wins:',wins)
         break

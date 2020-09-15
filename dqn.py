@@ -31,9 +31,9 @@ env = gym.make('Pong-v0')
 print(env.action_space)
 print(env.get_action_meanings())
 
-model = DQN(MlpPolicy, env, verbose=1)
+model = DQN(CnnPolicy, env, verbose=1)
 # model = DQN(CnnPolicy, env, verbose=1)
-model.learn(total_timesteps=10000, log_interval=5)
+model.learn(total_timesteps=40000, log_interval=10)
 #model.save("dqn_breakout")
 
 #del model # remove to demonstrate saving and loading
@@ -43,13 +43,17 @@ model.learn(total_timesteps=10000, log_interval=5)
 obs = env.reset()
 
 score = 0
+rewards_sum = 0
 
 while True:
-    print(score)
+    # print(score)
     action, _states = model.predict(obs, deterministic=True)
     obs, reward, done, info = env.step(action)
     env.render()
     score = score + 1
+    # rewards_sum += reward
+    if reward > 0:
+        print('win!!!', reward)
 
     if done:
         # obs = env.reset()
