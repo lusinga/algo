@@ -35,8 +35,8 @@ n_actions = len(env.get_action_meanings())
 print(n_actions)
 action_noise = NormalActionNoise(mean=np.zeros(n_actions), sigma=0.1 * np.ones(n_actions))
 
-# model = DDPG('MlpPolicy', env, action_noise=action_noise, verbose=1)
-model = DDPG('MlpPolicy', env, verbose=1)
+model = DDPG('MlpPolicy', env, action_noise=action_noise, verbose=1)
+# model = DDPG('MlpPolicy', env, verbose=1)
 model.learn(total_timesteps=10000, log_interval=10)
 #model.save("ddpg_pendulum")
 #env = model.get_env()
@@ -56,7 +56,7 @@ while True:
     score = score + 1
     print(dones)
 
-    if dones.any():
+    if dones:
         # obs = env.reset()
         print('finished', score)
         break
