@@ -6,10 +6,11 @@ from stable_baselines3.common.cmd_util import make_vec_env
 
 # Parallel environments
 #env = make_vec_env('CartPole-v1', n_envs=4)
-env = gym.make('SpaceInvaders-v0')
+# env = gym.make('SpaceInvaders-v0')
+env = gym.make('Pong-v0')
 
 model = PPO(MlpPolicy, env, verbose=1)
-model.learn(total_timesteps=25000)
+model.learn(total_timesteps=10000)
 #model.save("ppo_cartpole")
 
 #del model # remove to demonstrate saving and loading
