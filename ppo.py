@@ -9,9 +9,11 @@ from stable_baselines3.common.cmd_util import make_vec_env
 # env = gym.make('SpaceInvaders-v0')
 env = gym.make('Pong-v0')
 
-model = PPO(MlpPolicy, env, verbose=1)
+#model = PPO(MlpPolicy, env, verbose=1)
+model = PPO.load("ppo_pong")
+model.set_env(env)
 model.learn(total_timesteps=10000)
-#model.save("ppo_pong")
+model.save("ppo_pong")
 
 #del model # remove to demonstrate saving and loading
 
