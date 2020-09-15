@@ -11,11 +11,11 @@ env = gym.make('Pong-v0')
 
 model = PPO(MlpPolicy, env, verbose=1)
 model.learn(total_timesteps=10000)
-#model.save("ppo_cartpole")
+#model.save("ppo_pong")
 
 #del model # remove to demonstrate saving and loading
 
-#model = PPO.load("ppo_cartpole")
+#model = PPO.load("ppo_pong")
 
 obs = env.reset()
 
