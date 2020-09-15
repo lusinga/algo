@@ -10,13 +10,14 @@ from stable_baselines3.common.cmd_util import make_vec_env
 env = gym.make('Pong-v0')
 
 # model = A2C(MlpPolicy, env, verbose=1)
-model = A2C(CnnPolicy, env, verbose=1)
-model.learn(total_timesteps=30000)
-#model.save("a2c_cartpole")
+# model = A2C(CnnPolicy, env, verbose=1)
+model = A2C.load("a2c_pong")
+model.set_env(env)
+model.learn(total_timesteps=10000)
+model.save("a2c_pong")
 
 #del model # remove to demonstrate saving and loading
 
-#model = A2C.load("a2c_cartpole")
 
 obs = env.reset()
 
@@ -36,5 +37,5 @@ while True:
 
     if done:
         print('finished', score)
-        print('wins:',wins)
+        print('wins:', wins)
         break
