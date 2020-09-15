@@ -22,7 +22,10 @@ from stable_baselines3.dqn import CnnPolicy
 # env = gym.make('BeamRider-v0') # 10000 主动前进型的
 # env = gym.make('Berzerk-v0')
 # env = gym.make('Bowling-v0')
-env = gym.make('Boxing-v0')
+# env = gym.make('Boxing-v0')
+# env = gym.make('Carnival-v0')
+# env = gym.make('Centipede-v0')
+env = gym.make('Pong-v0')
 
 
 print(env.action_space)
