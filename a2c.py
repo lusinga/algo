@@ -17,6 +17,8 @@ model.learn(total_timesteps=25000)
 
 obs = env.reset()
 
+score = 0
+
 while True:
     action, _states = model.predict(obs)
     obs, rewards, dones, info = env.step(action)
