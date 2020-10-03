@@ -27,18 +27,17 @@ from stable_baselines3.dqn import CnnPolicy
 # env = gym.make('Centipede-v0')
 env = gym.make('Pong-v0')
 
+save_file = 'dqn_pong';
 
 print(env.action_space)
 print(env.get_action_meanings())
 
 model = DQN(CnnPolicy, env, verbose=1)
+#model = DQN.load(save_file)
+model.set_env(env)
 # model = DQN(CnnPolicy, env, verbose=1)
-model.learn(total_timesteps=40000, log_interval=10)
-#model.save("dqn_breakout")
-
-#del model # remove to demonstrate saving and loading
-
-#model = DQN.load("dqn_pendulum")
+model.learn(total_timesteps=10000, log_interval=10)
+model.save(save_file)
 
 obs = env.reset()
 
@@ -49,7 +48,7 @@ while True:
     # print(score)
     action, _states = model.predict(obs, deterministic=True)
     obs, reward, done, info = env.step(action)
-    env.render()
+    # env.render()
     score = score + 1
     # rewards_sum += reward
     if reward > 0:
