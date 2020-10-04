@@ -30,7 +30,7 @@ from stable_baselines3.dqn import CnnPolicy
 # game = 'AirRaid-ram-v0'
 # game = 'Alien-ram-v0' # 探险类
 # game = 'Amidar-ram-v0'
-game = 'Assault-ram-v0' # 射击类
+# game = 'Assault-ram-v0' # 射击类
 # game = 'Asterix-ram-v0'
 # game = 'Asteroids-ram-v0'
 # game = 'Atlantis-ram-v0'
@@ -93,7 +93,7 @@ game = 'Assault-ram-v0' # 射击类
 env = gym.make(game)
 
 # save_file = 'dqn_pong';
-save_file = 'dqn_DemonAttack';
+save_file = 'dqn_'+game;
 
 print(env.action_space)
 print(env.get_action_meanings())
